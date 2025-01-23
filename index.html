@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Here for Module 1</title>
+    <title>Module 1</title>
 
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    
+    <!-- Input Group -->
     <div class="group">
         <label for="name">Name</label>
-        <input type="text" name="" id="name">
+        <input type="text" name="name" id="name">
         <label for="value">Value</label>
         <input type="number" name="value" id="value">
         <button id="add" onclick="AddTransaction()">Add</button>
     </div>
 
-    <table>
+    <!-- Output Table -->
+     <table>
         <thead>
             <tr>
                 <th>#</th>
@@ -28,8 +29,7 @@
         </thead>
         <tbody id="transaction-list">
         </tbody>
-    </table>
-
+     </table>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

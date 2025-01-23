@@ -1,4 +1,4 @@
-//variables
+// Variables
 const valueInput = document.getElementById('value');
 const nameInput = document.getElementById('name');
 const tableOutput = document.getElementById('transaction-list');
@@ -7,9 +7,9 @@ let counter = JSON.parse(localStorage.getItem('counter')) || 0;
 
 let transactionList = JSON.parse(localStorage.getItem('transactionList')) || [];
 
-if (transacitionList.length > 0) {
+if (transactionList.length > 0) {
     transactionList.forEach(transaction => {
-        TableRowCreator({id: transaction.id, ...transaction});
+        TableRowCreator({id: transaction.id, ...transaction})
     });
 }
 
@@ -17,11 +17,11 @@ function TableRowCreator(transaction) {
     const newRow = document.createElement('tr');
     newRow.id = transaction.id;
     newRow.innerHTML = `
-    <td>${transaction.counter + 1}</td>
-    <td>${transaction.value}</td>
+    <td>${transaction.id + 1}</td>
+    <td>${transaction.name}</td>
     <td>${transaction.value}</td>
     <td>
-        <button onClick="DeleteFunction(${transaction.id})">X</button>
+        <button onClick='DeleteFunction(${transaction.id})'>X</button>
     </td>
     `
 
@@ -30,17 +30,14 @@ function TableRowCreator(transaction) {
 
 function AddTransaction() {
 
-}
-
-function DeleteFunction(id) {
-    transactionList = transactionList.filter(transaction => transaction.id !== id);
-    
-    document.getElementById(id).remove();
-
-}
-
     TableRowCreator({
-        id: (counter + 1),
+        id: counter,
+        name: nameInput.value,
+        value: valueInput.value
+    });
+
+    transactionList.push({
+        id: counter,
         name: nameInput.value,
         value: valueInput.value
     });
@@ -51,5 +48,26 @@ function DeleteFunction(id) {
     valueInput.value = 0;
     nameInput.value = '';
 
-    counter++;
 
+
+    counter++;
+}
+
+function UpdateTableIndices() {
+    const tableRows = tableOutput.getElementsByTagName('tr');
+    for (let i = 1; i < tableRows.length; i++) {
+        tableRows[i].getElementsByTagName('td')[0].innerText = i;
+    }
+}
+
+function DeleteFunction(id) {
+    transactionList = transactionList.filter(transaction => transaction.id !== id);
+
+    document.getElementById(id).remove();
+
+    localStorage.setItem('transactionList', JSON.stringify(transactionList));
+
+
+    UpdateTableIndices();
+    counter--;
+}

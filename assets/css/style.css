@@ -1,0 +1,27 @@
+/* CSS code */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; /* Add this line */
+}
+
+.class-group {
+    text-align: center;
+    margin-bottom: 20px; /* Add this line to create space between the class group and the table */
+}
+
+table {
+    margin: 0 auto; /* Add this line to center the table horizontally */
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+}
